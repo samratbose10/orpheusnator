@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 import akinator
+import logging
 
 app = Flask(__name__)
 orpheus = akinator.Akinator()
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/')
 def index():
@@ -13,8 +17,18 @@ def start():
     try:
         orpheus.start_game()
         return redirect(url_for('question'))
+    except akinator.ServersDown:
+        message = "Akinator server is down. Please try again later."
+        logging.error(message)
+        return render_template('error.html', message=message)
+    except akinator.TechnicalError:
+        message = "Technical fault in Akinator. Please try again later."
+        logging.error(message)
+        return render_template('error.html', message=message)
     except Exception as e:
-        return render_template('error.html', message=str(e))
+        message = f"An unexpected error occurred: {str(e)}"
+        logging.error(message)
+        return render_template('error.html', message=message)
 
 @app.route('/question', methods=['GET', 'POST'])
 def question():
