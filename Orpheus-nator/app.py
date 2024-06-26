@@ -3,9 +3,10 @@ import openai
 
 app = Flask(__name__)
 
+# Set your OpenAI API key
 openai.api_key = 'FMBRKWHICQYOGP0P76O7RELVNDVX3JP71KQPOVLTUWUX9N7EA4X3Y5R0T2OP49RC'
 
-
+# Initialize session variables
 session_data = {}
 
 def ask_openai(prompt):
@@ -26,7 +27,12 @@ def index():
         "Is it used for web development?",
         "Is it a frontend technology?",
         "Is it a backend technology?",
-        "Is it a part of the Hack Club workshops?"
+        "Is it a part of the Hack Club workshops?",
+        "Is it an open-source project?",
+        "Is it widely used in the industry?",
+        "Is it beginner-friendly?",
+        "Does it have a large community?",
+        "Is it cross-platform?"
     ]
     session_data['current_question'] = 0
     session_data['answers'] = []
