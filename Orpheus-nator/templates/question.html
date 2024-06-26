@@ -8,11 +8,19 @@
 <body>
     <h1>{{ question }}</h1>
     <form action="/question" method="post">
-        <button type="submit" name="answer" value="yes">Yes</button>
-        <button type="submit" name="answer" value="no">No</button>
-        <button type="submit" name="answer" value="idk">I don't know</button>
-        <button type="submit" name="answer" value="probably">Probably</button>
-        <button type="submit" name="answer" value="probably not">Probably not</button>
+        <div>
+            <input type="radio" id="yes" name="answer" value="yes">
+            <label for="yes">Yes</label>
+        </div>
+        <div>
+            <input type="radio" id="no" name="answer" value="no">
+            <label for="no">No</label>
+        </div>
+        <div>
+            <input type="radio" id="idk" name="answer" value="I don't know">
+            <label for="idk">I don't know</label>
+        </div>
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
